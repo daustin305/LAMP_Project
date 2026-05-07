@@ -2,11 +2,11 @@
 
 	$inData = getRequestInfo();
 	
-	$user_id = $inData["userId"] ?? 0;
+	$userId = $inData["userId"] ?? 0;
     $searchResults = [];
 
     //Checks for valid user ID
-    if ($user_id <= 0) {
+    if ($userId <= 0) {
         echo json_encode(["error" => "Invalid User ID", "results" => []]);
         exit();
     }
@@ -25,7 +25,7 @@
                 WHERE (firstName LIKE ? OR lastName LIKE ? OR Email LIKE ? OR Phone LIKE ?) AND UserID = ?");
 
         $searchTerm = "%" . $inData["search"] . "%";
-        $stmt->bind_param("ssssi", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $user_id);
+        $stmt->bind_param("ssssi", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $userId);
         
         $stmt->execute();
 		
