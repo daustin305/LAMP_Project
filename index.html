@@ -1,22 +1,52 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>COP 4331 LAMP Stack Demo</title>
-	<script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Contact Manager</title>
+	<script type="text/javascript" src="js/code.js?v=20260507-0218" defer></script>
+	<link href="css/styles.css?v=20260507-0220" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
 </head>
 <body>
+	<main class="page-shell auth-shell">
+		<section class="card">
+			<h1 class="title">Contact Manager</h1>
+			<p class="subtitle">Sign in or create an account to manage your contacts.</p>
 
-<h1 id="title">COP 4331 LAMP Stack Demo</h1>
+			<div class="auth-toggle" role="tablist" aria-label="Authentication options">
+				<button id="showLoginButton" class="toggle-button active" type="button">Login</button>
+				<button id="showSignupButton" class="toggle-button" type="button">Create Account</button>
+			</div>
 
-<div id="loginDiv">
-	<span id="inner-title">PLEASE LOG IN</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
-	<span id="loginResult"></span>
-</div>
+			<form id="loginForm" class="auth-form">
+				<label for="loginName">Username</label>
+				<input type="text" id="loginName" placeholder="Enter username" autocomplete="username" required>
 
+				<label for="loginPassword">Password</label>
+				<input type="password" id="loginPassword" placeholder="Enter password" autocomplete="current-password" required>
+
+				<button type="submit" class="primary-button">Login</button>
+				<p id="loginResult" class="status-text" aria-live="polite"></p>
+			</form>
+
+			<form id="signupForm" class="auth-form hidden">
+				<label for="signupFirstName">First Name</label>
+				<input type="text" id="signupFirstName" placeholder="Enter first name" autocomplete="given-name" required>
+
+				<label for="signupLastName">Last Name</label>
+				<input type="text" id="signupLastName" placeholder="Enter last name" autocomplete="family-name" required>
+
+				<label for="signupLogin">Username</label>
+				<input type="text" id="signupLogin" placeholder="Create username" autocomplete="username" required>
+
+				<label for="signupPassword">Password</label>
+				<input type="password" id="signupPassword" placeholder="Create password" autocomplete="new-password" required>
+
+				<button type="submit" class="primary-button">Create Account</button>
+				<p id="signupResult" class="status-text" aria-live="polite"></p>
+			</form>
+		</section>
+	</main>
 </body>
 </html>
