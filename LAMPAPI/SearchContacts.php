@@ -21,11 +21,21 @@
     
 	else
 	{
-		$stmt = $conn->prepare("SELECT ID, firstName, lastName, Phone, Email FROM Contacts 
-                WHERE (firstName LIKE ? OR lastName LIKE ? OR Email LIKE ? OR Phone LIKE ?) AND UserID = ?");
+		// Normalize whitespace so searches like "Sam   Hill" work the same as "Sam Hill".
+        $rawSearch = trim($inData["search"] ?? "");
+        $rawSearch = preg_replace('/\s+/', ' ', $rawSearch);
 
-        $searchTerm = "%" . $inData["search"] . "%";
-        $stmt->bind_param("ssssi", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $userId);
+		$stmt = $conn->prepare("SELECT ID, firstName, lastName, Phone, Email FROM Contacts 
+                WHERE (
+                    CONCAT(firstName, ' ', lastName) LIKE ?
+                    OR firstName LIKE ?
+                    OR lastName LIKE ?
+                    OR Email LIKE ?
+                    OR Phone LIKE ?
+                ) AND UserID = ?");
+
+        $searchTerm = "%" . $rawSearch . "%";
+        $stmt->bind_param("sssssi", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm, $userId);
         
         $stmt->execute();
 		
