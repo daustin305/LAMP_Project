@@ -1,1 +1,1 @@
-# COP4331 LAMP Project - Drake Austin
+# LAMP Contact Manager - Drake Austin
