@@ -22,6 +22,6 @@ gantt
     Contacts Dashboard            :ui3, 2026-05-06, 1d
 
     Lighthouse Performance Testing :qa2, after ui1, 1d
-    Bug Fixing                    :qa3, after ui1, 3d
+    Bug Fixing                    :qa3, after ui1, 1d
 
 ```
